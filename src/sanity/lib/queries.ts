@@ -85,6 +85,32 @@ export async function getSpeakingPage(): Promise<SpeakingPageContent | null> {
   )
 }
 
+export type OnlineClassesPageContent = {
+  heroHeadline: string
+  heroSubhead: string
+  heroBody: string
+  stanStoreHeading?: string
+  stanStoreBody?: string
+  stanStoreButtonLabel?: string
+  stanStoreUrl?: string
+  postSnippetHeading?: string
+  postSnippetBody?: string
+  postUrl?: string
+  postLinkLabel?: string
+}
+
+export async function getOnlineClassesPage(): Promise<OnlineClassesPageContent | null> {
+  return client.fetch(
+    `*[_id == "onlineClassesPage"][0]{
+      heroHeadline, heroSubhead, heroBody,
+      stanStoreHeading, stanStoreBody, stanStoreButtonLabel, stanStoreUrl,
+      postSnippetHeading, postSnippetBody, postUrl, postLinkLabel
+    }`,
+    {},
+    { next: { revalidate: REVALIDATE_SECONDS } },
+  )
+}
+
 export type ContactPageContent = {
   heading: string
   body?: string

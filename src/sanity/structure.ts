@@ -2,12 +2,19 @@ import type { StructureResolver } from 'sanity/structure'
 
 // Page-copy types are "singletons" — there should only ever be one of each,
 // so they're pinned as single documents below instead of a creatable list.
-const SINGLETON_TYPES = new Set(['homePage', 'aboutPage', 'speakingPage', 'contactPage'])
+const SINGLETON_TYPES = new Set([
+  'homePage',
+  'aboutPage',
+  'speakingPage',
+  'onlineClassesPage',
+  'contactPage',
+])
 
 const SINGLETON_PAGES: { id: string; type: string; title: string }[] = [
   { id: 'homePage', type: 'homePage', title: 'Home Page' },
   { id: 'aboutPage', type: 'aboutPage', title: 'About Page' },
   { id: 'speakingPage', type: 'speakingPage', title: 'Speaking Page' },
+  { id: 'onlineClassesPage', type: 'onlineClassesPage', title: 'Online Classes Page' },
   { id: 'contactPage', type: 'contactPage', title: 'Contact Page' },
 ]
 
