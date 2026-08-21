@@ -41,9 +41,8 @@ export const classes: OnlineClass[] = [
     audience: "Families",
     description:
       "How to recognize, prevent, and respond to sibling sexual abuse, and build a home where every child is safe.",
-    price: "", // TODO: confirm price
-    // TODO: link currently redirects to storefront root. Get correct URL from Kimberly.
-    url: "https://stan.store/Toughtopicsmom/p/raising-safe-siblings",
+    price: "$37.00",
+    url: "https://stan.store/Toughtopicsmom/p/raising-safe-siblings-",
     coverSrc: "/images/classes/raising-safe-siblings.jpg", // TODO: get cover
     coverAlt: "Raising Safe Siblings class cover",
     published: false,
