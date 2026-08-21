@@ -1,7 +1,8 @@
 // One-off content migration for the site updates described in the "Tough
 // Topics Mom site updates" task. Run this once against the real Sanity
-// dataset to populate the 3 books, the 3 online class cards, the "Parents
-// Night" speaking topic, and the booking price labels.
+// dataset to populate the 3 books, the "Parents Night" speaking topic, and
+// the booking price labels. (Online classes moved to a static data file —
+// see src/data/classes.ts — and aren't part of this script.)
 //
 // Usage:
 //   NEXT_PUBLIC_SANITY_PROJECT_ID=... \
@@ -109,45 +110,6 @@ async function upsertBooks() {
   }
 }
 
-async function updateOnlineClassesPage() {
-  const doc = await client.fetch(`*[_id == "onlineClassesPage"][0]{_id}`);
-  if (!doc) {
-    console.log(
-      'No onlineClassesPage document found — create it in Studio first (Content > Online Classes Page), then re-run this script.',
-    );
-    return;
-  }
-
-  const classes = [
-    {
-      _key: "free-class",
-      title: "Free Body Safety Parenting Class",
-      description:
-        "Start here — a free class to help you begin body safety conversations with confidence.",
-      buttonLabel: "Take the free class",
-      buttonUrl:
-        "https://stan.store/Toughtopicsmom/p/take-my-free-body-safety-parenting-class-today",
-    },
-    {
-      _key: "body-boss-bootcamp",
-      title: "Body Boss Bootcamp",
-      description: "Body safety for kids — a practical bootcamp for parents ready to go deeper.",
-      buttonLabel: "Enroll on Stan",
-      buttonUrl: "https://stan.store/Toughtopicsmom/p/body-boss-bootcamp-body-safety-for-kids",
-    },
-    {
-      _key: "raising-safe-siblings",
-      title: "Raising Safe Siblings",
-      description: "Sibling sexual abuse prevention — protect every child in the family.",
-      buttonLabel: "Enroll on Stan",
-      buttonUrl: "https://stan.store/Toughtopicsmom/p/raising-safe-siblings",
-    },
-  ];
-
-  await client.patch("onlineClassesPage").set({ classes }).commit();
-  console.log("Updated onlineClassesPage classes");
-}
-
 async function updateSpeakingPage() {
   const doc = await client.fetch(
     `*[_id == "speakingPage"][0]{_id, topics, bookingOptions}`,
@@ -188,7 +150,6 @@ async function updateSpeakingPage() {
 
 async function main() {
   await upsertBooks();
-  await updateOnlineClassesPage();
   await updateSpeakingPage();
 }
 
