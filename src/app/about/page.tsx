@@ -1,13 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
 import ChecklistCard from "@/components/ChecklistCard";
 import LogoStrip from "@/components/LogoStrip";
 import { featuredPress, sitePressMentions } from "@/lib/press";
+import { socialLinks } from "@/lib/socials";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
 import { getAboutPage, getTestimonials } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Kimberly King",
+  jobTitle: "Child Body Safety Educator, Author & Speaker",
+  url: "https://toughtopicsmom.com/about",
+  sameAs: [socialLinks.instagram, socialLinks.linkedin, socialLinks.substack],
+};
 
 export default async function AboutPage() {
   const [content, testimonials] = await Promise.all([
@@ -17,6 +28,10 @@ export default async function AboutPage() {
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <section className="bg-gradient-to-b from-brand-light/40 to-white px-4 py-16 text-center sm:px-6">
         <Reveal>
           <Image
@@ -109,6 +124,15 @@ export default async function AboutPage() {
             buttonLabel={content?.ctaButtonLabel ?? ""}
             href="/contact"
           />
+        </Reveal>
+        <Reveal className="mx-auto mt-6 max-w-4xl text-center">
+          <p className="text-sm text-gray-500">
+            Interested in partnerships and collaboration?{" "}
+            <Link href="/contact" className="font-medium text-brand-dark underline hover:text-accent">
+              Get in touch
+            </Link>
+            .
+          </p>
         </Reveal>
       </div>
     </div>

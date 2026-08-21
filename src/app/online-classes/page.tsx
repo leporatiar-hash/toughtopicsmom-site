@@ -1,10 +1,19 @@
+import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import OnlineClassCard from "@/components/OnlineClassCard";
 import { getOnlineClassesPage } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
 
+export const metadata: Metadata = {
+  title: "Online Classes | Tough Topics Mom",
+  description:
+    "Body safety online classes for parents, including a free class and a sibling sexual abuse prevention course from author and educator Kimberly King.",
+};
+
 export default async function OnlineClassesPage() {
   const content = await getOnlineClassesPage();
+  const classes = content?.classes ?? [];
 
   return (
     <div>
@@ -19,6 +28,18 @@ export default async function OnlineClassesPage() {
           <p className="mt-4 text-gray-600">{content?.heroBody}</p>
         </Reveal>
       </section>
+
+      {classes.length > 0 && (
+        <section className="mx-auto max-w-5xl px-4 pb-4 sm:px-6">
+          <div className="grid gap-6 sm:grid-cols-3">
+            {classes.map((classItem, index) => (
+              <Reveal key={classItem.title} delay={index * 0.1}>
+                <OnlineClassCard classItem={classItem} />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
         <Reveal>

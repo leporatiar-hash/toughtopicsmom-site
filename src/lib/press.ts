@@ -19,9 +19,16 @@ export const featuredPress: FeaturedPress = {
 };
 
 export const sitePressMentions: PressMention[] = [
-  { name: "Popsugar", logoSrc: "/logos/popsugar.png" },
+  { name: "ABC", logoSrc: "/logos/abc.svg" },
   { name: "NBC", logoSrc: "/logos/nbc.svg" },
+  { name: "FOX", logoSrc: "/logos/fox.svg" },
+  { name: "Forbes", logoSrc: "/logos/forbes.svg" },
+  { name: "Harvard Graduate School of Education", logoSrc: "/logos/harvard-gse.svg" },
+  { name: "Mayo Clinic", logoSrc: "/logos/mayo-clinic.svg" },
 ];
+
+// Structured press mentions for the Media page (outlet + headline + link).
+export const pressMentionsList: FeaturedPress[] = [featuredPress];
 
 export const speakingPressMentions: PressMention[] = [
   { name: "ABC", logoSrc: "/logos/abc.svg" },

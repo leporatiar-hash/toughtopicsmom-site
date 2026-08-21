@@ -85,10 +85,19 @@ export async function getSpeakingPage(): Promise<SpeakingPageContent | null> {
   )
 }
 
+export type OnlineClassCard = {
+  title: string
+  description?: string
+  coverImage?: SanityImageSource | null
+  buttonLabel?: string
+  buttonUrl?: string
+}
+
 export type OnlineClassesPageContent = {
   heroHeadline: string
   heroSubhead: string
   heroBody: string
+  classes?: OnlineClassCard[]
   stanStoreHeading?: string
   stanStoreBody?: string
   stanStoreButtonLabel?: string
@@ -103,6 +112,7 @@ export async function getOnlineClassesPage(): Promise<OnlineClassesPageContent |
   return client.fetch(
     `*[_id == "onlineClassesPage"][0]{
       heroHeadline, heroSubhead, heroBody,
+      classes[]{title, description, coverImage, buttonLabel, buttonUrl},
       stanStoreHeading, stanStoreBody, stanStoreButtonLabel, stanStoreUrl,
       postSnippetHeading, postSnippetBody, postUrl, postLinkLabel
     }`,

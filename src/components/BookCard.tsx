@@ -3,12 +3,23 @@ import type { SanityBook } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 
 export default function BookCard({ book }: { book: SanityBook }) {
-  const buyLinks = book.buyLinks ?? [];
+  // Only show buy buttons that have a real URL — buyLinks without one (e.g.
+  // Bookshop.org, Signed Copy, Retail before those links exist) stay hidden.
+  const buyLinks = (book.buyLinks ?? []).filter((link) => !!link.url);
   const primaryLink = buyLinks.find((link) => link.primary) ?? buyLinks[0];
   const secondaryLinks = buyLinks.filter((link) => link !== primaryLink);
   const coverImageUrl = book.coverImage
     ? urlFor(book.coverImage).width(416).height(576).url()
     : null;
+
+  const bookJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: book.title,
+    author: { "@type": "Person", name: "Kimberly King" },
+    description: book.description,
+    ...(primaryLink?.url ? { url: primaryLink.url } : {}),
+  };
 
   return (
     <article
@@ -16,6 +27,10 @@ export default function BookCard({ book }: { book: SanityBook }) {
         book.featured ? "sm:p-10" : ""
       }`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bookJsonLd) }}
+      />
       <div className="relative mx-auto shrink-0 sm:mx-0">
         <div
           className={`flex items-center justify-center rounded-lg bg-brand-light/40 text-sm text-brand-dark ${

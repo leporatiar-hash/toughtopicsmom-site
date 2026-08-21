@@ -31,6 +31,54 @@ export const onlineClassesPage = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'classes',
+      title: 'Class cards',
+      type: 'array',
+      description:
+        'Shown as a card grid near the top of the page. Drag to reorder — put the free class first.',
+      of: [
+        {
+          type: 'object',
+          name: 'classCard',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'One-line description',
+              type: 'text',
+              rows: 2,
+            }),
+            defineField({
+              name: 'coverImage',
+              title: 'Cover image',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: 'buttonLabel',
+              title: 'Button text',
+              type: 'string',
+              initialValue: 'View on Stan',
+            }),
+            defineField({
+              name: 'buttonUrl',
+              title: 'Stan Store URL',
+              type: 'url',
+              validation: (Rule) => Rule.uri({ scheme: ['http', 'https'] }),
+            }),
+          ],
+          preview: {
+            select: { title: 'title', subtitle: 'buttonUrl', media: 'coverImage' },
+          },
+        },
+      ],
+    }),
+    defineField({
       name: 'stanStoreHeading',
       title: 'Stan Store section heading',
       type: 'string',

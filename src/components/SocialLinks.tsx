@@ -1,7 +1,9 @@
+import { socialLinks } from "@/lib/socials";
+
 const socials = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/toughtopicsmom/",
+    href: socialLinks.instagram,
     icon: (
       <>
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -12,8 +14,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    // TODO: replace with Kimberly's real LinkedIn profile URL — this is a placeholder
-    href: "https://www.linkedin.com",
+    href: socialLinks.linkedin,
     icon: (
       <>
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import LogoStrip from "@/components/LogoStrip";
 import Reveal from "@/components/Reveal";
@@ -25,13 +26,24 @@ export default async function SpeakingPage() {
             <p className="mt-4 text-gray-600">{content?.heroBody}</p>
           </Reveal>
 
-          {/* TODO: speaking photos from Kimberly (on stage / at a podium) */}
           <Reveal delay={0.1} className="flex flex-1 gap-4">
-            <div className="flex h-64 flex-1 items-center justify-center rounded-2xl bg-brand-light/60 text-sm text-brand-dark shadow-sm">
-              Photo coming soon
+            <div className="h-64 flex-1 overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/images/kimberly-classroom.jpg"
+                alt="Kimberly King teaching a body safety lesson to elementary school students in their classroom"
+                width={416}
+                height={512}
+                className="h-full w-full object-cover"
+              />
             </div>
-            <div className="flex h-64 flex-1 items-center justify-center rounded-2xl bg-brand-light/60 text-sm text-brand-dark shadow-sm">
-              Photo coming soon
+            <div className="h-64 flex-1 overflow-hidden rounded-2xl shadow-sm">
+              <Image
+                src="/images/kimberly-speaking-event.jpg"
+                alt="Kimberly King with fellow speakers at a professional networking event overlooking the New York City skyline"
+                width={416}
+                height={512}
+                className="h-full w-full object-cover"
+              />
             </div>
           </Reveal>
         </div>
@@ -71,9 +83,14 @@ export default async function SpeakingPage() {
             {bookingOptions.map((option, index) => (
               <Reveal key={option.title} delay={index * 0.1}>
                 <div className="flex h-full flex-col items-center rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-                  {/* TODO: photo from Kimberly */}
-                  <div className="flex h-32 w-32 items-center justify-center rounded-full bg-brand-light/60 text-sm text-brand-dark">
-                    Photo coming soon
+                  <div className="h-32 w-32 overflow-hidden rounded-full">
+                    <Image
+                      src="/images/kimberly-red-top.jpg"
+                      alt="Kimberly King smiling at a professional speaking event"
+                      width={128}
+                      height={128}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <h3 className="mt-4 font-bold text-brand-dark">
                     {option.title}
