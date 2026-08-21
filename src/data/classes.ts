@@ -29,7 +29,7 @@ export const classes: OnlineClass[] = [
     audience: "Kids",
     description:
       "Fun, age-appropriate lessons that help kids learn body safety rules, set boundaries, and trust their own voice.",
-    price: "", // TODO: confirm price with Kimberly
+    price: "$17.00",
     url: "https://stan.store/Toughtopicsmom/p/body-boss-bootcamp-body-safety-for-kids",
     coverSrc: "/images/classes/body-boss-bootcamp.jpg",
     coverAlt: "Body Boss Bootcamp body safety course for kids cover",
