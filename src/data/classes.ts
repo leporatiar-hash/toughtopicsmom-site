@@ -13,7 +13,7 @@ export type OnlineClass = {
 export const classes: OnlineClass[] = [
   {
     slug: "body-safety-parenting-class",
-    title: "Body Safety Parenting Class",
+    title: "Take My FREE Body Safety Parenting Class Today!",
     audience: "Parents",
     description:
       "A free, self-paced class that walks parents through how to introduce body safety at home, what to say, and when to start.",
