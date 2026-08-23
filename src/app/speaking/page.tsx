@@ -1,11 +1,41 @@
 import Image from "next/image";
+import Card from "@/components/Card";
 import ContactForm from "@/components/ContactForm";
 import LogoStrip from "@/components/LogoStrip";
 import Reveal from "@/components/Reveal";
+import VideoPlayer from "@/components/VideoPlayer";
 import { speakingPressMentions, spokenAtMentions } from "@/lib/press";
 import { getSpeakingPage } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
+
+// Booking options come from Sanity as {title, priceLabel} only — the photos
+// are fixed per card position (Keynote, Workshop & Staff Training, Panelist).
+const bookingOptionVisuals: {
+  src: string;
+  alt: string;
+  ratio: "4/5" | "4/3";
+  position: string;
+}[] = [
+  {
+    src: "/images/kimberly-keynote-graphic.jpg",
+    alt: "Kimberly King presenting a keynote on stage",
+    ratio: "4/5",
+    position: "center",
+  },
+  {
+    src: "/images/kimberly-workshop.jpg",
+    alt: "Three teachers holding Kimberly King's body safety books at a staff training workshop",
+    ratio: "4/5",
+    position: "top",
+  },
+  {
+    src: "/images/kimberly-panelist.jpg",
+    alt: "Kimberly King on a panel with five other authors and educators holding children's safety books",
+    ratio: "4/3",
+    position: "center",
+  },
+];
 
 export default async function SpeakingPage() {
   const content = await getSpeakingPage();
@@ -26,23 +56,14 @@ export default async function SpeakingPage() {
             <p className="mt-4 text-gray-600">{content?.heroBody}</p>
           </Reveal>
 
-          <Reveal delay={0.1} className="flex flex-1 gap-4">
-            <div className="h-64 flex-1 overflow-hidden rounded-2xl shadow-sm">
+          <Reveal delay={0.1} className="mx-auto w-full max-w-sm flex-1">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-sm">
               <Image
-                src="/images/kimberly-classroom.jpg"
-                alt="Kimberly King teaching a body safety lesson to elementary school students in their classroom"
-                width={416}
-                height={512}
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="h-64 flex-1 overflow-hidden rounded-2xl shadow-sm">
-              <Image
-                src="/images/kimberly-speaking-event.jpg"
-                alt="Kimberly King with fellow speakers at a professional networking event overlooking the New York City skyline"
-                width={416}
-                height={512}
-                className="h-full w-full object-cover"
+                src="/images/kimberly-red-shirt-stage.jpg"
+                alt="Kimberly King on stage speaking to an audience"
+                fill
+                style={{ objectPosition: "top" }}
+                className="object-cover"
               />
             </div>
           </Reveal>
@@ -80,31 +101,22 @@ export default async function SpeakingPage() {
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {bookingOptions.map((option, index) => (
-              <Reveal key={option.title} delay={index * 0.1}>
-                <div className="flex h-full flex-col items-center rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-                  <div className="h-32 w-32 overflow-hidden rounded-full">
-                    <Image
-                      src="/images/kimberly-red-top.jpg"
-                      alt="Kimberly King smiling at a professional speaking event"
-                      width={128}
-                      height={128}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <h3 className="mt-4 font-bold text-brand-dark">
-                    {option.title}
-                  </h3>
-                  <p className="mt-1 text-gray-600">{option.priceLabel}</p>
-                  <a
-                    href="#contact"
-                    className="mt-4 rounded-lg bg-accent px-5 py-2 font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-accent-dark hover:shadow-md"
-                  >
-                    Inquire
-                  </a>
-                </div>
-              </Reveal>
-            ))}
+            {bookingOptions.map((option, index) => {
+              const visual = bookingOptionVisuals[index] ?? bookingOptionVisuals[0];
+              return (
+                <Reveal key={option.title} delay={index * 0.1}>
+                  <Card
+                    image={visual.src}
+                    imageAlt={visual.alt}
+                    imageRatio={visual.ratio}
+                    imagePosition={visual.position}
+                    title={option.title}
+                    price={option.priceLabel}
+                    cta={{ label: "Inquire", href: "#contact" }}
+                  />
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -114,10 +126,11 @@ export default async function SpeakingPage() {
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
             {content?.videoHeading}
           </h2>
-          {/* TODO: embed speaking reel once Kimberly provides a video link */}
-          <div className="mt-10 flex aspect-video items-center justify-center rounded-2xl bg-gray-100 text-gray-400 shadow-sm">
-            Video coming soon
-          </div>
+          <VideoPlayer
+            src="/videos/kimberly-podcast-clip.mp4"
+            poster="/videos/kimberly-podcast-clip-poster.jpg"
+            className="mx-auto mt-10 max-w-3xl"
+          />
         </Reveal>
       </section>
 

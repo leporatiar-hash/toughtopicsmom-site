@@ -43,8 +43,8 @@ export const classes: OnlineClass[] = [
       "How to recognize, prevent, and respond to sibling sexual abuse, and build a home where every child is safe.",
     price: "$37.00",
     url: "https://stan.store/Toughtopicsmom/p/raising-safe-siblings-",
-    coverSrc: "/images/classes/raising-safe-siblings.jpg", // TODO: get cover
+    coverSrc: "/images/classes/raising-safe-siblings.jpg",
     coverAlt: "Raising Safe Siblings class cover",
-    published: false,
+    published: true,
   },
 ];

@@ -44,13 +44,15 @@ export default function MediaPage() {
               key={headshot.src}
               className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
             >
-              <Image
-                src={headshot.src}
-                alt={headshot.alt}
-                width={400}
-                height={500}
-                className="w-full rounded-lg object-cover"
-              />
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-lg">
+                <Image
+                  src={headshot.src}
+                  alt={headshot.alt}
+                  fill
+                  style={{ objectPosition: "top" }}
+                  className="object-cover"
+                />
+              </div>
               <a
                 href={headshot.src}
                 download

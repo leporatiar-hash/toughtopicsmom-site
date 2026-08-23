@@ -6,6 +6,16 @@ import { client } from './client'
 // live site within a minute, without needing a full redeploy.
 export const REVALIDATE_SECONDS = 60
 
+// A Sanity outage or misconfiguration shouldn't 500 the whole page — fall
+// back to null/empty so pages still render with their static content.
+async function safeFetch<T>(query: string, fallback: T): Promise<T> {
+  try {
+    return await client.fetch(query, {}, { next: { revalidate: REVALIDATE_SECONDS } })
+  } catch {
+    return fallback
+  }
+}
+
 export type HomePageContent = {
   heroHeadline: string
   heroSubhead: string
@@ -14,10 +24,9 @@ export type HomePageContent = {
 }
 
 export async function getHomePage(): Promise<HomePageContent | null> {
-  return client.fetch(
+  return safeFetch(
     `*[_id == "homePage"][0]{heroHeadline, heroSubhead, heroBody, videoSectionHeading}`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    null,
   )
 }
 
@@ -35,15 +44,14 @@ export type AboutPageContent = {
 }
 
 export async function getAboutPage(): Promise<AboutPageContent | null> {
-  return client.fetch(
+  return safeFetch(
     `*[_id == "aboutPage"][0]{
       heroTagline, bioParagraph1, bioParagraph2,
       searchingForHeading, searchingForItems,
       offersHeading, offersItems,
       testimonialsHeading, ctaHeading, ctaButtonLabel
     }`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    null,
   )
 }
 
@@ -72,16 +80,26 @@ export type SpeakingPageContent = {
   closingTagline?: string
 }
 
+const speakingPageFallback: SpeakingPageContent = {
+  heroHeadline: '',
+  heroSubhead: '',
+  heroBody: '',
+  bookingOptions: [
+    { title: 'Keynote' },
+    { title: 'Workshop & Staff Training' },
+    { title: 'Panelist' },
+  ],
+}
+
 export async function getSpeakingPage(): Promise<SpeakingPageContent | null> {
-  return client.fetch(
+  return safeFetch(
     `*[_id == "speakingPage"][0]{
       heroHeadline, heroSubhead, heroBody,
       topicsHeading, topics[]{title, description}, topicsClosingLine,
       bookingHeading, bookingOptions[]{title, priceLabel},
       videoHeading, contactHeading, contactBody, closingTagline
     }`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    speakingPageFallback,
   )
 }
 
@@ -100,14 +118,13 @@ export type OnlineClassesPageContent = {
 }
 
 export async function getOnlineClassesPage(): Promise<OnlineClassesPageContent | null> {
-  return client.fetch(
+  return safeFetch(
     `*[_id == "onlineClassesPage"][0]{
       heroHeadline, heroSubhead, heroBody,
       stanStoreHeading, stanStoreBody, stanStoreButtonLabel, stanStoreUrl,
       postSnippetHeading, postSnippetBody, postUrl, postLinkLabel
     }`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    null,
   )
 }
 
@@ -117,11 +134,7 @@ export type ContactPageContent = {
 }
 
 export async function getContactPage(): Promise<ContactPageContent | null> {
-  return client.fetch(
-    `*[_id == "contactPage"][0]{heading, body}`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
-  )
+  return safeFetch(`*[_id == "contactPage"][0]{heading, body}`, null)
 }
 
 export type SanityTestimonial = {
@@ -131,10 +144,9 @@ export type SanityTestimonial = {
 }
 
 export async function getTestimonials(): Promise<SanityTestimonial[]> {
-  return client.fetch(
+  return safeFetch(
     `*[_type == "testimonial"] | order(_createdAt asc){quote, author, role}`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    [],
   )
 }
 
@@ -156,12 +168,11 @@ export type SanityBook = {
 }
 
 export async function getBooks(): Promise<SanityBook[]> {
-  return client.fetch(
+  return safeFetch(
     `*[_type == "book"] | order(featured desc, _createdAt asc){
       title, "slug": slug.current, description, coverImage,
       badge, bulkOrderNote, featured, buyLinks[]{label, url, primary}
     }`,
-    {},
-    { next: { revalidate: REVALIDATE_SECONDS } },
+    [],
   )
 }

@@ -9,7 +9,7 @@ export default function BookCard({ book }: { book: SanityBook }) {
   const primaryLink = buyLinks.find((link) => link.primary) ?? buyLinks[0];
   const secondaryLinks = buyLinks.filter((link) => link !== primaryLink);
   const coverImageUrl = book.coverImage
-    ? urlFor(book.coverImage).width(416).height(576).url()
+    ? urlFor(book.coverImage).width(400).height(600).url()
     : null;
 
   const bookJsonLd = {
@@ -33,20 +33,21 @@ export default function BookCard({ book }: { book: SanityBook }) {
       />
       <div className="relative mx-auto shrink-0 sm:mx-0">
         <div
-          className={`flex items-center justify-center rounded-lg bg-brand-light/40 text-sm text-brand-dark ${
-            book.featured ? "h-72 w-52" : "h-56 w-40"
+          className={`relative aspect-[2/3] overflow-hidden rounded-lg bg-brand-light/40 ${
+            book.featured ? "w-52" : "w-40"
           }`}
         >
           {coverImageUrl ? (
             <Image
               src={coverImageUrl}
               alt={book.title}
-              width={208}
-              height={288}
-              className="h-full w-full rounded object-cover"
+              fill
+              className="object-cover"
             />
           ) : (
-            "Cover coming soon"
+            <div className="flex h-full items-center justify-center text-center text-sm text-brand-dark">
+              Cover coming soon
+            </div>
           )}
         </div>
         {book.badge && (

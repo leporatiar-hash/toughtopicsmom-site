@@ -7,6 +7,7 @@ import { socialLinks } from "@/lib/socials";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
+import VideoPlayer from "@/components/VideoPlayer";
 import { getAboutPage, getTestimonials } from "@/sanity/lib/queries";
 
 export const revalidate = 60;
@@ -56,13 +57,15 @@ export default async function AboutPage() {
 
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
         <Reveal className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-          <Image
-            src="/images/kimberly-headshot.png"
-            alt="Kimberly King"
-            width={176}
-            height={224}
-            className="mx-auto h-56 w-44 shrink-0 rounded-2xl object-cover shadow-sm sm:mx-0"
-          />
+          <div className="relative aspect-[4/5] w-44 shrink-0 overflow-hidden rounded-2xl shadow-sm sm:w-56">
+            <Image
+              src="/images/kimberly-beach-photo.jpg"
+              alt="Kimberly King holding her book Body Safety for Young Children on the beach"
+              fill
+              style={{ objectPosition: "top" }}
+              className="mx-auto object-cover sm:mx-0"
+            />
+          </div>
           <div className="space-y-4 text-gray-600">
             <p>{content?.bioParagraph1}</p>
             <p>{content?.bioParagraph2}</p>
@@ -89,22 +92,27 @@ export default async function AboutPage() {
         </Reveal>
 
         <Reveal className="mt-8">
-          <a
-            href={featuredPress.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mx-auto flex max-w-xl flex-col items-center gap-1 rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-          >
+          <div className="mx-auto flex max-w-xl flex-col items-center gap-1 rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm">
             <span className="text-xs font-semibold uppercase tracking-wide text-accent">
               Featured Interview — {featuredPress.publication}
             </span>
             <span className="font-semibold text-brand-dark">
               {featuredPress.title}
             </span>
-            <span className="text-sm text-gray-500 underline">
-              Watch the interview
-            </span>
-          </a>
+            <VideoPlayer
+              src="/videos/kimberly-abc7-feature.mp4"
+              poster="/videos/kimberly-abc7-feature-poster.jpg"
+              className="mt-4 w-full max-w-xs"
+            />
+            <a
+              href={featuredPress.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 text-sm text-gray-500 underline"
+            >
+              Read the original article
+            </a>
+          </div>
         </Reveal>
 
         <Reveal className="mt-16">
