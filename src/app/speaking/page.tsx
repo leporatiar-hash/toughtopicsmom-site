@@ -3,7 +3,7 @@ import Card from "@/components/Card";
 import ContactForm from "@/components/ContactForm";
 import LogoStrip from "@/components/LogoStrip";
 import Reveal from "@/components/Reveal";
-import VideoPlayer from "@/components/VideoPlayer";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { speakingPressMentions, spokenAtMentions } from "@/lib/press";
 import { bookingOptions } from "@/lib/speaking-booking-options";
 import { speakingTopics } from "@/lib/speaking-topics";
@@ -136,9 +136,12 @@ export default function SpeakingPage() {
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
             Watch Kimberly In Action
           </h2>
-          <VideoPlayer
-            src="/videos/kimberly-podcast-clip.mp4"
-            poster="/videos/kimberly-podcast-clip-poster.jpg"
+          <p className="mt-2 text-center text-sm text-gray-500">
+            The Bark Technologies Podcast — COCSA (1M+ views)
+          </p>
+          <YouTubeEmbed
+            videoId="hqB6RrR5HaI"
+            title="Kimberly King on the Bark Technologies Podcast — COCSA (1M+ views)"
             className="mx-auto mt-10 max-w-3xl"
           />
         </Reveal>

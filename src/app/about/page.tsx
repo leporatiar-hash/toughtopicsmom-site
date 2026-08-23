@@ -7,7 +7,6 @@ import { socialLinks } from "@/lib/socials";
 import TestimonialSection from "@/components/TestimonialSection";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
-import VideoPlayer from "@/components/VideoPlayer";
 
 const searchingFor = [
   "A child sexual abuse prevention expert to guide your team",
@@ -120,11 +119,6 @@ export default function AboutPage() {
             <span className="font-semibold text-brand-dark">
               {featuredPress.title}
             </span>
-            <VideoPlayer
-              src="/videos/kimberly-abc7-feature.mp4"
-              poster="/videos/kimberly-abc7-feature-poster.jpg"
-              className="mt-4 w-full max-w-xs"
-            />
             <a
               href={featuredPress.url}
               target="_blank"

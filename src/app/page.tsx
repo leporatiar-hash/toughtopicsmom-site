@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import VideoPlayer from "@/components/VideoPlayer";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 export default function HomePage() {
   return (
@@ -27,11 +27,14 @@ export default function HomePage() {
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <Reveal>
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-            See I Said No! In Action
+            Watch Kimberly In Action
           </h2>
-          <VideoPlayer
-            src="/videos/i-said-no-trailer.mp4"
-            poster="/videos/i-said-no-trailer-poster.jpg"
+          <p className="mt-2 text-center text-sm text-gray-500">
+            The Bark Technologies Podcast — COCSA (1M+ views)
+          </p>
+          <YouTubeEmbed
+            videoId="hqB6RrR5HaI"
+            title="Kimberly King on the Bark Technologies Podcast — COCSA (1M+ views)"
             className="mt-8"
           />
         </Reveal>

@@ -15,7 +15,7 @@ export type Book = {
   buyLinks: BuyLink[];
 };
 
-// TODO: real cover image and buy link URLs for "I Said No!" from Kimberly
+// TODO: real cover image for "I Said No!" from Kimberly
 export const books: Book[] = [
   {
     slug: "i-said-no",
@@ -28,8 +28,15 @@ export const books: Book[] = [
       "Bulk discounts available for educators, therapists, and advocates — reach out via Contact.",
     featured: true,
     buyLinks: [
-      { label: "Buy on Bookshop.org", url: null, primary: true },
-      { label: "Buy on Amazon", url: null },
+      {
+        label: "Buy on Bookshop.org",
+        url: "https://bookshop.org/p/books/i-said-no-a-kid-to-kid-guide-to-keeping-private-parts-private-kimberly-king/24feb3e4fc20ff5e",
+        primary: true,
+      },
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/Said-No-Kid-Kid-Keeping/dp/1958325392",
+      },
     ],
   },
   {
@@ -39,8 +46,15 @@ export const books: Book[] = [
       "The only book of its kind built to empower parents and teachers to protect children at home and at school — think \"What to Expect When You're Expecting\" for body safety education. An authentic, easy-to-read, and immediately implementable resource for anyone working to reduce the risk of child sexual abuse.",
     coverImage: "/images/books/book-body-safety-cover.jpg",
     buyLinks: [
-      { label: "Buy a Signed Copy", url: null, primary: true },
-      { label: "Buy at Retail", url: null },
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/Body-Safety-Young-Children-Empowering/dp/1636501303",
+        primary: true,
+      },
+      {
+        label: "Buy at Barnes & Noble",
+        url: "https://www.barnesandnoble.com/w/body-safety-for-young-children-kimberly-king/1143446718",
+      },
     ],
   },
 ];

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { pressMentionsList } from "@/lib/press";
 
 export const metadata: Metadata = {
@@ -93,10 +94,14 @@ export default function MediaPage() {
 
       <Reveal className="mt-16" delay={0.1}>
         <h2 className="text-2xl font-bold text-brand-dark">Video</h2>
-        {/* TODO: embed the Bark reel once Kimberly provides a hosted video link */}
-        <div className="mt-6 flex aspect-video items-center justify-center rounded-2xl bg-gray-100 text-gray-400 shadow-sm">
-          Video coming soon
-        </div>
+        <p className="mt-2 text-sm text-gray-500">
+          Kimberly King on the Bark Technologies Podcast — COCSA (1M+ views)
+        </p>
+        <YouTubeEmbed
+          videoId="hqB6RrR5HaI"
+          title="Kimberly King on the Bark Technologies Podcast — COCSA (1M+ views)"
+          className="mt-6"
+        />
       </Reveal>
     </div>
   );

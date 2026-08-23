@@ -31,8 +31,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# videos (large files, hosted elsewhere)
-public/videos/*.mp4
 
 # typescript
 *.tsbuildinfo
