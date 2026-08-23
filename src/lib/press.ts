@@ -27,9 +27,6 @@ export const sitePressMentions: PressMention[] = [
   { name: "Mayo Clinic", logoSrc: "/logos/mayo-clinic.svg" },
 ];
 
-// Structured press mentions for the Media page (outlet + headline + link).
-export const pressMentionsList: FeaturedPress[] = [featuredPress];
-
 export const speakingPressMentions: PressMention[] = [
   { name: "ABC", logoSrc: "/logos/abc.svg" },
   { name: "NBC", logoSrc: "/logos/nbc.svg" },

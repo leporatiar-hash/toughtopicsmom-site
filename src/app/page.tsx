@@ -173,13 +173,12 @@ export default function HomePage() {
             delay={0.1}
           >
             {sitePressMentions.map((mention) => (
-              <Link
+              <span
                 key={mention.name}
-                href="/media"
-                className="rounded-full border-[1.5px] border-mist bg-cream px-5 py-2 text-sm text-charcoal transition-colors duration-200 hover:bg-navy hover:text-white"
+                className="rounded-full border-[1.5px] border-mist bg-cream px-5 py-2 text-sm text-charcoal"
               >
                 {mention.name}
-              </Link>
+              </span>
             ))}
           </Reveal>
         </div>
