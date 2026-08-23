@@ -8,9 +8,22 @@ import TestimonialSection from "@/components/TestimonialSection";
 import CtaBand from "@/components/CtaBand";
 import Reveal from "@/components/Reveal";
 import VideoPlayer from "@/components/VideoPlayer";
-import { getAboutPage, getTestimonials } from "@/sanity/lib/queries";
 
-export const revalidate = 60;
+const searchingFor = [
+  "A child sexual abuse prevention expert to guide your team",
+  "A powerful keynote speaker for your next conference",
+  "A certified body safety educator for children and parents",
+  "Signed copies or bulk orders of prevention books",
+  "Private consultations and staff trainings",
+];
+
+const kimberlyOffers = [
+  "Professional, trauma-informed support",
+  "Approachable guidance grounded in real experience",
+  "Evidence-based best practices",
+  "Customized training programs",
+  "Ongoing consultation and support",
+];
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -21,12 +34,7 @@ const personJsonLd = {
   sameAs: [socialLinks.instagram, socialLinks.linkedin, socialLinks.substack],
 };
 
-export default async function AboutPage() {
-  const [content, testimonials] = await Promise.all([
-    getAboutPage(),
-    getTestimonials(),
-  ]);
-
+export default function AboutPage() {
   return (
     <div>
       <script
@@ -50,7 +58,7 @@ export default async function AboutPage() {
             Tough Topics Mom
           </p>
           <p className="mt-4 text-lg italic text-brand-dark">
-            {content?.heroTagline}
+            Empowered Adults. Protected Kids.
           </p>
         </Reveal>
       </section>
@@ -67,23 +75,36 @@ export default async function AboutPage() {
             />
           </div>
           <div className="space-y-4 text-gray-600">
-            <p>{content?.bioParagraph1}</p>
-            <p>{content?.bioParagraph2}</p>
+            <p>
+              Kimberly King, known as the Tough Topics Mom, is a leading
+              voice in child sexual abuse prevention, helping families,
+              schools, and organizations take action before abuse
+              happens. She is the author of the best-selling, most
+              highly recommended prevention book for children,{" "}
+              <em>
+                I Said No! A Kid-to-Kid Guide to Keeping Private Parts
+                Private
+              </em>
+              , co-written with her son Zack.
+            </p>
+            <p>
+              Kimberly is a mom, a survivor, a Sexual Abuse Prevention
+              Facilitator with Darkness to Light (D2L.org), and a Sexual
+              Assault Crisis Counselor with The Rowan Center. As a
+              best-selling author, educator, and trusted prevention
+              consultant, she partners with parents, schools, mental
+              health professionals, and youth-serving organizations to
+              build safer communities — one conversation at a time.
+            </p>
           </div>
         </Reveal>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2">
           <Reveal>
-            <ChecklistCard
-              title={content?.searchingForHeading ?? ""}
-              items={content?.searchingForItems ?? []}
-            />
+            <ChecklistCard title="If you're searching for:" items={searchingFor} />
           </Reveal>
           <Reveal delay={0.1}>
-            <ChecklistCard
-              title={content?.offersHeading ?? ""}
-              items={content?.offersItems ?? []}
-            />
+            <ChecklistCard title="Kimberly offers:" items={kimberlyOffers} />
           </Reveal>
         </div>
 
@@ -117,10 +138,10 @@ export default async function AboutPage() {
 
         <Reveal className="mt-16">
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-            {content?.testimonialsHeading}
+            What People Are Saying
           </h2>
           <div className="mt-8">
-            <TestimonialSection testimonials={testimonials} />
+            <TestimonialSection />
           </div>
         </Reveal>
       </div>
@@ -128,8 +149,8 @@ export default async function AboutPage() {
       <div className="px-4 pb-16 sm:px-6">
         <Reveal className="mx-auto max-w-4xl">
           <CtaBand
-            heading={content?.ctaHeading ?? ""}
-            buttonLabel={content?.ctaButtonLabel ?? ""}
+            heading="Work with Kimberly"
+            buttonLabel="Get in Touch"
             href="/contact"
           />
         </Reveal>

@@ -7,8 +7,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
 import NavLink from "@/components/NavLink";
 
-// TODO: point at our own booking flow once one exists on this site
-const DISCOVERY_CALL_URL = "https://www.toughtopicsmom.com/free-discovery-call";
+// TODO: point at a real booking flow (e.g. Calendly) once one exists
+const DISCOVERY_CALL_URL = "/contact";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <nav>
             <ul className="flex items-center gap-6">
               {navLinks.map((link) => (
@@ -63,8 +63,6 @@ export default function Header() {
 
           <a
             href={DISCOVERY_CALL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:bg-accent-dark hover:shadow-md"
           >
             Free Discovery Call
@@ -73,7 +71,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="flex h-6 w-6 flex-col items-center justify-center gap-1.5 md:hidden"
+          className="flex h-6 w-6 flex-col items-center justify-center gap-1.5 lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -100,7 +98,7 @@ export default function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-brand-light md:hidden"
+            className="overflow-hidden border-t border-brand-light lg:hidden"
           >
             <ul className="flex flex-col px-4 py-2 sm:px-6">
               {navLinks.map((link) => (
@@ -117,8 +115,6 @@ export default function Header() {
               <li className="pt-2">
                 <a
                   href={DISCOVERY_CALL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-block rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white"
                   onClick={() => setIsMenuOpen(false)}
                 >

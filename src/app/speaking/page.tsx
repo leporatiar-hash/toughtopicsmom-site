@@ -5,22 +5,25 @@ import LogoStrip from "@/components/LogoStrip";
 import Reveal from "@/components/Reveal";
 import VideoPlayer from "@/components/VideoPlayer";
 import { speakingPressMentions, spokenAtMentions } from "@/lib/press";
-import { getSpeakingPage } from "@/sanity/lib/queries";
+import { bookingOptions } from "@/lib/speaking-booking-options";
+import { speakingTopics } from "@/lib/speaking-topics";
 
-export const revalidate = 60;
-
-// Booking options come from Sanity as {title, priceLabel} only — the photos
-// are fixed per card position (Keynote, Workshop & Staff Training, Panelist).
+// Booking options come as {title, priceLabel} only — the photos are fixed
+// per card position (Keynote, Workshop & Staff Training, Panelist).
 const bookingOptionVisuals: {
   src: string;
   alt: string;
   ratio: "4/5" | "4/3";
+  fit?: "cover" | "contain";
   position: string;
 }[] = [
   {
+    // Near-square promo graphic with baked-in text — contain instead of
+    // cover so the text overlay isn't cropped at the edges.
     src: "/images/kimberly-keynote-graphic.jpg",
     alt: "Kimberly King presenting a keynote on stage",
     ratio: "4/5",
+    fit: "contain",
     position: "center",
   },
   {
@@ -33,27 +36,31 @@ const bookingOptionVisuals: {
     src: "/images/kimberly-panelist.jpg",
     alt: "Kimberly King on a panel with five other authors and educators holding children's safety books",
     ratio: "4/3",
-    position: "center",
+    position: "top",
   },
 ];
 
-export default async function SpeakingPage() {
-  const content = await getSpeakingPage();
-  const topics = content?.topics ?? [];
-  const bookingOptions = content?.bookingOptions ?? [];
-
+export default function SpeakingPage() {
   return (
     <div>
       <section className="bg-gradient-to-b from-brand-light/40 to-white px-4 py-16 sm:px-6">
         <div className="mx-auto flex max-w-5xl flex-col gap-10 lg:flex-row lg:items-center">
           <Reveal className="flex-1">
             <h1 className="text-4xl font-bold text-brand-dark sm:text-5xl">
-              {content?.heroHeadline}
+              Empowered Adults. Protected Kids.
             </h1>
             <p className="mt-4 text-lg font-medium text-gray-700">
-              {content?.heroSubhead}
+              Body safety and sexual abuse prevention are possible when
+              safe adults are empowered to reduce risk, implement real
+              strategies, and protect the children in their care.
             </p>
-            <p className="mt-4 text-gray-600">{content?.heroBody}</p>
+            <p className="mt-4 text-gray-600">
+              Kimberly King helps parents, caregivers, early childhood
+              educators, and program directors move from fear to
+              preparedness — building the policies, training, and
+              everyday practices that keep kids safer, at home and in
+              the programs that serve them.
+            </p>
           </Reveal>
 
           <Reveal delay={0.1} className="mx-auto w-full max-w-sm flex-1">
@@ -73,11 +80,11 @@ export default async function SpeakingPage() {
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <Reveal>
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-            {content?.topicsHeading}
+            Speaking Topics That Drive Impact
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {topics.map((topic, index) => (
+          {speakingTopics.map((topic, index) => (
             <Reveal key={topic.title} delay={(index % 3) * 0.1}>
               <div className="h-full rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="font-bold text-brand-dark">{topic.title}</h3>
@@ -89,7 +96,9 @@ export default async function SpeakingPage() {
           ))}
         </div>
         <p className="mt-8 text-center text-gray-600">
-          {content?.topicsClosingLine}
+          Each session is customized to your audience — parents,
+          educators, clinicians, or mixed groups — so attendees leave
+          with clear, actionable steps.
         </p>
       </section>
 
@@ -97,7 +106,7 @@ export default async function SpeakingPage() {
         <div className="mx-auto max-w-5xl">
           <Reveal>
             <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-              {content?.bookingHeading}
+              Book Kimberly For Your Event
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -109,6 +118,7 @@ export default async function SpeakingPage() {
                     image={visual.src}
                     imageAlt={visual.alt}
                     imageRatio={visual.ratio}
+                    imageFit={visual.fit}
                     imagePosition={visual.position}
                     title={option.title}
                     price={option.priceLabel}
@@ -124,7 +134,7 @@ export default async function SpeakingPage() {
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <Reveal>
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-            {content?.videoHeading}
+            Watch Kimberly In Action
           </h2>
           <VideoPlayer
             src="/videos/kimberly-podcast-clip.mp4"
@@ -144,10 +154,11 @@ export default async function SpeakingPage() {
       <section id="contact" className="bg-gradient-to-b from-brand-light/40 to-white px-4 py-16 sm:px-6">
         <Reveal className="mx-auto max-w-2xl">
           <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
-            {content?.contactHeading}
+            Let&rsquo;s Bring This Conversation to Your Organization
           </h2>
           <p className="mt-4 text-center text-gray-600">
-            {content?.contactBody}
+            Fill out the form below and Kimberly will follow up to
+            discuss your event, audience, and how she can help.
           </p>
           <div className="mt-10 rounded-2xl bg-white p-6 shadow-md sm:p-8">
             <ContactForm showEventType />
@@ -157,7 +168,7 @@ export default async function SpeakingPage() {
 
       <div className="bg-gradient-to-br from-brand to-brand-dark px-4 py-10 text-center sm:px-6">
         <p className="text-lg font-semibold italic text-white">
-          {content?.closingTagline}
+          Empowered Adults. Protected Kids.
         </p>
       </div>
     </div>

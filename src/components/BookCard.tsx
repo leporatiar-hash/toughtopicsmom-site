@@ -1,16 +1,12 @@
 import Image from "next/image";
-import type { SanityBook } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
+import type { Book } from "@/lib/books";
 
-export default function BookCard({ book }: { book: SanityBook }) {
+export default function BookCard({ book }: { book: Book }) {
   // Only show buy buttons that have a real URL — buyLinks without one (e.g.
   // Bookshop.org, Signed Copy, Retail before those links exist) stay hidden.
-  const buyLinks = (book.buyLinks ?? []).filter((link) => !!link.url);
+  const buyLinks = book.buyLinks.filter((link) => !!link.url);
   const primaryLink = buyLinks.find((link) => link.primary) ?? buyLinks[0];
   const secondaryLinks = buyLinks.filter((link) => link !== primaryLink);
-  const coverImageUrl = book.coverImage
-    ? urlFor(book.coverImage).width(400).height(600).url()
-    : null;
 
   const bookJsonLd = {
     "@context": "https://schema.org",
@@ -37,9 +33,9 @@ export default function BookCard({ book }: { book: SanityBook }) {
             book.featured ? "w-52" : "w-40"
           }`}
         >
-          {coverImageUrl ? (
+          {book.coverImage ? (
             <Image
-              src={coverImageUrl}
+              src={book.coverImage}
               alt={book.title}
               fill
               className="object-cover"
