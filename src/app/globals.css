@@ -13,13 +13,12 @@ body {
 }
 
 @layer base {
-  h1 {
-    font-family: var(--font-alegreya), serif;
-  }
-  h2 {
-    font-family: var(--font-poppins), sans-serif;
-  }
-  h3 {
-    font-family: var(--font-jost), sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), Georgia, serif;
   }
 }

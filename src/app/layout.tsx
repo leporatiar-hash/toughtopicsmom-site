@@ -1,33 +1,26 @@
 import type { Metadata } from "next";
-import { Nunito, Alegreya, Poppins, Jost } from "next/font/google";
+import { Playfair_Display, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const nunito = Nunito({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-nunito",
+  weight: ["700", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
-const alegreya = Alegreya({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["500", "700", "800"],
-  variable: "--font-alegreya",
+  weight: ["300", "400", "500"],
+  variable: "--font-dm-sans",
 });
 
-const poppins = Poppins({
+const caveat = Caveat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-});
-
-// Canva Sans is a proprietary Canva font with no public web version;
-// Jost is a close geometric-sans substitute for card/heading-level text.
-const jost = Jost({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-jost",
+  weight: ["600"],
+  variable: "--font-caveat",
 });
 
 export const metadata: Metadata = {
@@ -45,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunito.variable} ${alegreya.variable} ${poppins.variable} ${jost.variable} font-sans antialiased`}
+        className={`${playfair.variable} ${dmSans.variable} ${caveat.variable} font-sans antialiased`}
       >
         <Header />
         <main>{children}</main>

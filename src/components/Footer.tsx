@@ -6,12 +6,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-b from-brand to-brand-dark text-white">
+    <footer className="bg-charcoal text-white">
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <p className="text-center text-lg font-semibold italic">
-          Empowered Adults. Protected Kids.
+        <p className="text-center font-script text-3xl text-white">
+          Tough Topics Mom&reg;
         </p>
-        <p className="mt-2 text-center text-sm italic text-white/90">
+        <p className="mt-3 text-center font-serif text-lg italic text-white/90">
           &ldquo;An educated, empowered family is an unattractive
           target.&rdquo;&reg;
         </p>

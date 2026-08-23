@@ -9,10 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-nunito)", "system-ui", "sans-serif"],
-        title: ["var(--font-alegreya)", "serif"],
-        subtitle: ["var(--font-poppins)", "sans-serif"],
-        heading: ["var(--font-jost)", "sans-serif"],
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+        script: ["var(--font-caveat)", "cursive"],
       },
       colors: {
         background: "var(--background)",
@@ -26,6 +25,17 @@ const config: Config = {
           DEFAULT: "#F0513E",
           dark: "#C04132",
         },
+        // Design system tokens extracted from the media bio one-pager.
+        navy: {
+          DEFAULT: "#1A3F6F",
+          mid: "#2461A8",
+          light: "#4A90C4",
+          pale: "#D6E8F5",
+        },
+        cream: "#F4F8FC",
+        charcoal: "#0F2137",
+        slate: "#4A6080",
+        mist: "#C8DFF0",
       },
       keyframes: {
         marquee: {
