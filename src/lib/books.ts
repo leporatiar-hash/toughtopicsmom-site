@@ -9,20 +9,21 @@ export type Book = {
   title: string;
   description: string;
   coverImage: string | null;
+  ageRange?: string;
   badge?: string;
   bulkOrderNote?: string;
   featured?: boolean;
   buyLinks: BuyLink[];
 };
 
-// TODO: real cover image for "I Said No!" from Kimberly
 export const books: Book[] = [
   {
     slug: "i-said-no",
     title: "I Said No! A Kid-to-Kid Guide to Keeping Private Parts Private",
     description:
       "A Mom's Choice Awards® Gold Recipient, I Said No! was Amazon's number-one-selling book on sexual abuse prevention for many years. Written from a child's point of view, it helps kids learn how to set healthy boundaries for their private parts, using an easy-to-use system to rehearse and remember appropriate responses. The newest edition, published by Marble Press, includes updated illustrations and essential online safety content for today's world.",
-    coverImage: null,
+    coverImage: "/images/books/book-i-said-no-cover.png",
+    ageRange: "Ages 4–8",
     badge: "Mom's Choice Gold Award Winner",
     bulkOrderNote:
       "Bulk discounts available for educators, therapists, and advocates — reach out via Contact.",
@@ -36,6 +37,22 @@ export const books: Book[] = [
       {
         label: "Buy on Amazon",
         url: "https://www.amazon.com/Said-No-Kid-Kid-Keeping/dp/1958325392",
+      },
+    ],
+  },
+  {
+    slug: "i-said-no-to-hugs",
+    title: "I Said No to Hugs! A Kid-to-Kid Guide to Consent",
+    description:
+      "A companion to I Said No!, this kid-to-kid guide follows a young girl learning that hugs — and every kind of affection — are always her choice. A playful, age-appropriate introduction to consent and bodily autonomy, illustrated by Tanya Forys.",
+    coverImage: "/images/books/book-i-said-no-to-hugs-cover.png",
+    ageRange: "Ages 3–8",
+    badge: "Bestseller",
+    buyLinks: [
+      {
+        label: "Buy on Amazon",
+        url: "https://www.amazon.com/Said-Hugs-kid-guide-consent/dp/B0DY38D93G",
+        primary: true,
       },
     ],
   },

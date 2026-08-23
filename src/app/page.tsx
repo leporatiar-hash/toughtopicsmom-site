@@ -23,9 +23,12 @@ export default function HomePage() {
             alt="Kimberly King, Tough Topics Mom"
             fill
             priority
-            className="object-cover object-top"
+            quality={90}
+            sizes="(min-width: 768px) 420px, 100vw"
+            style={{ objectPosition: "40% 15%" }}
+            className="object-cover"
           />
-          <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-r from-transparent to-cream md:block" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-r from-transparent to-cream md:block" />
         </div>
 
         <Reveal className="flex flex-col justify-center px-6 py-12 sm:px-10 md:py-20">
@@ -85,7 +88,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {books.map((book, index) => {
               const primaryLink =
                 book.buyLinks.find((link) => link.primary && link.url) ??
@@ -121,6 +124,11 @@ export default function HomePage() {
                           ? `${book.description.slice(0, 140).trim()}…`
                           : book.description}
                       </p>
+                      {book.ageRange && (
+                        <span className="mt-3 w-fit rounded-full border border-navy-mid px-3 py-1 text-xs font-semibold uppercase tracking-wide text-navy-mid">
+                          {book.ageRange}
+                        </span>
+                      )}
                       {primaryLink?.url && (
                         <a
                           href={primaryLink.url}
