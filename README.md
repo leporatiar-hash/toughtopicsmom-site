@@ -28,5 +28,5 @@ Then open [http://localhost:3000](http://localhost:3000). Changes to files under
 1. Create a new folder under `src/app/` (e.g. `src/app/faq/`) with a `page.tsx` file inside it.
 2. Add the page to `src/lib/nav-links.ts` if it should appear in the site navigation.
 
-<!-- trigger Vercel deploy -->
+<!-- trigger Vercel deploy (retry after fixing output directory setting) -->
 
