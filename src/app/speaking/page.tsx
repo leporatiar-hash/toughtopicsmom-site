@@ -102,6 +102,56 @@ export default function SpeakingPage() {
         </p>
       </section>
 
+      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+        <Reveal>
+          <h2 className="text-center text-3xl font-bold text-brand-dark sm:text-4xl">
+            Workshops in Action
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-gray-600">
+            From preschools and daycares to elementary schools — anywhere
+            young children are in someone else&rsquo;s care — Kimberly&rsquo;s
+            staff workshops open up an honest, non-taboo conversation
+            with teachers and caregivers: how often abuse happens, how
+            to recognize the warning signs, and how to respond. Programs
+            leave with real policies and everyday practices, not just a
+            one-time training.
+          </p>
+        </Reveal>
+        <Reveal
+          delay={0.1}
+          className="mt-10 flex flex-col items-center gap-8 lg:flex-row"
+        >
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-sm lg:w-1/2">
+            <Image
+              src="/images/kimberly-preschool-workshop.jpg"
+              alt="Kimberly King leading a body safety workshop with preschool teachers gathered around a table"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <blockquote className="lg:w-1/2">
+            <p className="text-lg text-gray-700">
+              &ldquo;You did an amazing job! The workshop did exactly what
+              I anticipated…Open up a dialogue with the teachers. Not
+              treating this as taboo. And educating them on how frequent
+              this happens and how serious it is. You covered all of
+              that. There were a lot of conversations that happened
+              after you left and the next day. Even at our CPR training
+              yesterday, teachers were still talking about it. I want to
+              thank you again for such an incredible, eye-opening,
+              imperative workshop! I can&rsquo;t thank you enough!&rdquo;
+            </p>
+            <footer className="mt-4 text-sm font-semibold text-brand-dark">
+              Maria Hillman
+              <span className="font-normal text-gray-500">
+                {" "}
+                — Director, Saint Aloysius Catholic Preschool
+              </span>
+            </footer>
+          </blockquote>
+        </Reveal>
+      </section>
+
       <section className="bg-gradient-to-b from-brand-light/40 to-white px-4 py-16 sm:px-6">
         <div className="mx-auto max-w-5xl">
           <Reveal>

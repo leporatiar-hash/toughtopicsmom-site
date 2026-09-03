@@ -82,4 +82,10 @@ export const testimonials: Testimonial[] = [
     author: "Victoria Barendsen",
     role: "Registered Psychologist, The Safe Kids Project",
   },
+  {
+    quote:
+      "You did an amazing job! The workshop did exactly what I anticipated: open up a dialogue with the teachers, not treating this as taboo, and educating them on how frequent this happens and how serious it is. There were a lot of conversations that happened after you left and the next day.",
+    author: "Maria Hillman",
+    role: "Director, Saint Aloysius Catholic Preschool",
+  },
 ];
