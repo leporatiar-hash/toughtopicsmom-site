@@ -9,6 +9,7 @@ export const navLinks: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Speaking", href: "/speaking" },
   { label: "Books", href: "/books" },
+  { label: "Share Your Story", href: "/share-your-story" },
   { label: "Online Classes", href: "/online-classes" },
   { label: "The Blind Spot", href: "https://kimberlykingauthor.substack.com", external: true },
   { label: "Contact", href: "/contact" },
