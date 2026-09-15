@@ -22,7 +22,7 @@ export default function ShareYourStoryPage() {
           wrong, a sexting scare, content a child stumbled onto. No story is
           too small.
         </p>
-        <p className="mt-6 border-l-2 border-accent pl-4 text-center italic text-accent sm:text-left">
+        <p className="mt-6 border-l-2 border-brand pl-4 text-center italic text-brand-dark sm:text-left">
           This is not scare. This is prepare.&reg;
         </p>
 
