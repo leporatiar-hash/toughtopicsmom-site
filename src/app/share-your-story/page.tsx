@@ -22,10 +22,6 @@ export default function ShareYourStoryPage() {
           wrong, a sexting scare, content a child stumbled onto. No story is
           too small.
         </p>
-        <p className="mt-6 border-l-2 border-brand pl-4 text-center italic text-brand-dark sm:text-left">
-          This is not scare. This is prepare.&reg;
-        </p>
-
         <div className="mt-10 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
           <ShareYourStoryForm />
         </div>
