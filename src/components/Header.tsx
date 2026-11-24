@@ -6,9 +6,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "@/lib/nav-links";
 import NavLink from "@/components/NavLink";
-
-// TODO: point at a real booking flow (e.g. Calendly) once one exists
-const DISCOVERY_CALL_URL = "/contact";
+import { BOOKING_URL } from "@/lib/booking";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,10 +46,12 @@ export default function Header() {
           </nav>
 
           <a
-            href={DISCOVERY_CALL_URL}
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-navy transition-all duration-200 hover:scale-105 hover:shadow-md"
           >
-            Free Discovery Call
+            Book a Consultation
           </a>
         </div>
 
@@ -100,11 +100,13 @@ export default function Header() {
               ))}
               <li className="pt-2 pb-2">
                 <a
-                  href={DISCOVERY_CALL_URL}
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block rounded-full bg-white px-4 py-2 text-sm font-semibold text-navy"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Free Discovery Call
+                  Book a Consultation
                 </a>
               </li>
             </ul>
